@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: bb86080d899f0a149a627240bbfa706a
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 77c6b7c38f6ca2b46be72800f79019ab
   m_configObjects: {}
