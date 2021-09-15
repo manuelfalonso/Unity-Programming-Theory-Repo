@@ -2,10 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuScript : MonoBehaviour
 {
     [SerializeField] private Button startButton;
+    private TMP_InputField nameInput;
+
     [SerializeField] private int maxCharNameLength;
 
     // ENCAPSULATION
@@ -14,15 +17,14 @@ public class MenuScript : MonoBehaviour
         get { return _playerName; }
         set
         {
-            if (value.Length == 0 || value.Length > maxCharNameLength)
-            {
-                throw new ArgumentOutOfRangeException(
-                    $"{nameof(value)} is required and its max length is {maxCharNameLength}");
-            }
-            else
+            if (value.Length != 0)
             {
                 _playerName = value;
                 startButton.interactable = true;
+            }
+            else
+            {
+                startButton.interactable = false;
             }
         } 
     }
@@ -31,6 +33,8 @@ public class MenuScript : MonoBehaviour
     void Start()
     {
         startButton.interactable = false;
+        nameInput = GetComponentInChildren<TMP_InputField>();
+        nameInput.characterLimit = maxCharNameLength;
     }
 
     public void StartGame()
