@@ -1,27 +1,26 @@
-using System;
 using UnityEngine;
 
 /// <summary>
 /// Third Person Character Controller Class
-/// It may be use with Cinemachine
+/// Required: Cinemachine. Create a Free Look Camera with World Space orbit
 /// Optional: Animation Controller
 /// </summary>
 
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonController : MonoBehaviour
 {
+    [SerializeField] private float playerSpeed = 4.0f;
+    [SerializeField] private float jumpHeight = 2.0f;
+    [SerializeField] private float fallSpeedLimit = -0.5f;
+    [SerializeField] private float turnSmoothTime = 0.1f;
+    private bool isGrounded;
+    private float turnSmoothVelocity;
+
 	private Camera gameCamera;
     private CharacterController controller;
+    private Vector3 verticalVelocity;
     //private Animator animator;
-    private Vector3 playerVelocity;
 
-    [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float jumpHeight = 1.0f;
-    [SerializeField] private float fallSpeed = -0.5f;
-    private bool isGrounded;
-
-    // gravity = H/2t² -> Use this to change intended behaviour
-    // H = height to jump. t = time
     const float GRAVITY_VALUE = 9.81f;
 
     private void Start()
@@ -41,44 +40,38 @@ public class ThirdPersonController : MonoBehaviour
         isGrounded = controller.isGrounded;
 
         // Limit fall velocity
-        if (isGrounded && playerVelocity.y < 0)
-        {
-            playerVelocity.y = fallSpeed;
-        }
+        if (isGrounded && verticalVelocity.y < 0)
+            verticalVelocity.y = fallSpeedLimit;
 
-        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        // Transform input into camara space
-        var forward = gameCamera.transform.forward;
-        forward.y = 0f;
-        forward.Normalize();
-        var right = Vector3.Cross(Vector3.up, forward);
-
-        Vector3 movement = forward * input.z + right * input.x;
-        movement.y = 0f;
-
-        controller.Move(movement * Time.deltaTime * playerSpeed);
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        // Input to move over the X and Z axis 
+        // and normalized so we dont move faster diagonally
+        Vector3 input = new Vector3(horizontal, 0f, vertical).normalized;
 
         // animator.SetFloat("MovementX", input.x);
         // animator.SetFloat("MovementZ", input.z);
 
-        // If player is moving forward is camera forward
-        if (input != Vector3.zero)
+        // Check if there is input
+        if (input.magnitude >= 0.1f)
         {
-            transform.forward = forward;
+            // Angle between inputs plus the camera Y axis
+            float targetAngle = Mathf.Atan2(input.x, input.z) * Mathf.Rad2Deg + gameCamera.transform.eulerAngles.y;
+            // Smooth transition between transform Y axis and targetAngle
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            // Multiply a Quaternion angle and a Vector results in a vector
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
         }
 
-        // Jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            // Jump speed = sqrt(2Hg)
-            playerVelocity.y += Mathf.Sqrt(2 * jumpHeight * GRAVITY_VALUE);
-            // animator.SetTrigger("Jump");
-        }
+        // Jump or apply gravity
+        if (isGrounded && Input.GetButtonDown("Jump"))
+            verticalVelocity.y += Mathf.Sqrt(2 * jumpHeight * GRAVITY_VALUE);
+        else
+            verticalVelocity.y -= GRAVITY_VALUE * Time.deltaTime;
 
-        // Apply gravity
-        playerVelocity.y -= GRAVITY_VALUE * Time.deltaTime;
-
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move(verticalVelocity * Time.deltaTime);   
     }
 }
