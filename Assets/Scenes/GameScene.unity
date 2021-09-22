@@ -5132,7 +5132,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300782988}
-  m_LocalRotation: {x: -0.006287936, y: 2.329768e-10, z: 1.4649723e-12, w: 0.9999803}
+  m_LocalRotation: {x: -0.006287935, y: 1.3633873e-10, z: 8.573062e-13, w: 0.9999803}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -34609,7 +34609,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051396732}
-  m_LocalRotation: {x: -0.00628794, y: 0.000000002125104, z: -1.0437128e-11, w: 0.9999803}
+  m_LocalRotation: {x: -0.006287938, y: 0.0000000030466802, z: -1.744912e-11, w: 0.9999803}
   m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -36336,6 +36336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3468343377805839657, guid: 62995d2f98d46ac4b8ad39d9169c20bb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3761766065685202570, guid: 62995d2f98d46ac4b8ad39d9169c20bb, type: 3}
       propertyPath: m_Name
       value: DogBullTerrier

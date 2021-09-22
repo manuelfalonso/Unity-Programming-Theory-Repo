@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Dog : MonoBehaviour
@@ -66,11 +67,16 @@ public class Dog : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Bark"))
-            {
-                losePanel.SetActive(true);
-                Time.timeScale = 0f;
-            }
+            Attack();
+        }
+    }
+
+    public virtual void Attack()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Bark"))
+        {
+            losePanel.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }
