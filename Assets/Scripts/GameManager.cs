@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
         set => _playerName = value;
     }
 
+    private AudioSource audioS;
+
     private static GameManager instance;
     public static GameManager Instance 
     { 
@@ -27,6 +29,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
+    }
+
+    private void Start()
+    {
+        audioS = GetComponent<AudioSource>();
+        audioS.Play();
     }
 
     private void OnDestroy()

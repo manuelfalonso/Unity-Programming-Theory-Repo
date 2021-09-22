@@ -19,7 +19,7 @@ public class ThirdPersonController : MonoBehaviour
 	private Camera gameCamera;
     private CharacterController controller;
     private Vector3 verticalVelocity;
-    //private Animator animator;
+    private Animator animator;
 
     const float GRAVITY_VALUE = 9.81f;
 
@@ -27,11 +27,12 @@ public class ThirdPersonController : MonoBehaviour
     {
         gameCamera = Camera.main;
         controller = GetComponent<CharacterController>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        // ABSTRACTION
         MovePlayer();
     }
 
@@ -49,8 +50,8 @@ public class ThirdPersonController : MonoBehaviour
         // and normalized so we dont move faster diagonally
         Vector3 input = new Vector3(horizontal, 0f, vertical).normalized;
 
-        // animator.SetFloat("MovementX", input.x);
-        // animator.SetFloat("MovementZ", input.z);
+        // SET Animator Speed_f variable
+        animator.SetFloat("Speed_f", Mathf.Abs(input.magnitude));
 
         // Check if there is input
         if (input.magnitude >= 0.1f)

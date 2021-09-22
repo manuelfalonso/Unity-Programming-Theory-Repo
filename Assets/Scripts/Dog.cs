@@ -16,6 +16,7 @@ public class Dog : MonoBehaviour
 
     private void Update()
     {
+        // ABSTRACTION
         Move();
     }
 
