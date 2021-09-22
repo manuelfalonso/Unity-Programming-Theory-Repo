@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Dog : MonoBehaviour
 {
+    [SerializeField] private GameObject losePanel;
     [SerializeField] private Transform targetPosition;
     private Animator animator;
 
@@ -58,6 +59,18 @@ public class Dog : MonoBehaviour
         {
             // TRUE sit animation
             animator.SetBool("Sit_b", true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Bark"))
+            {
+                losePanel.SetActive(true);
+                Time.timeScale = 0f;
+            }
         }
     }
 }

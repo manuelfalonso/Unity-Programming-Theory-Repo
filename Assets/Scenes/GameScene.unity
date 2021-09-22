@@ -5132,7 +5132,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300782988}
-  m_LocalRotation: {x: -0.0062879366, y: -3.4886244e-10, z: -2.1936682e-12, w: 0.9999803}
+  m_LocalRotation: {x: -0.006287936, y: 2.329768e-10, z: 1.4649723e-12, w: 0.9999803}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -27215,7 +27215,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657178947}
-  m_LocalRotation: {x: 0.011902232, y: -1.1101444e-16, z: 1.3214132e-18, w: 0.9999292}
+  m_LocalRotation: {x: 0.011902233, y: 9.312566e-10, z: -1.1084818e-11, w: 0.9999292}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -34609,7 +34609,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051396732}
-  m_LocalRotation: {x: -0.00628794, y: -0.000000003085966, z: 1.5023635e-11, w: 0.9999803}
+  m_LocalRotation: {x: -0.00628794, y: 0.000000002125104, z: -1.0437128e-11, w: 0.9999803}
   m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -36260,6 +36260,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3536943795794193141, guid: 2d49b2563a5e3ac43baa7e7075e06d09, type: 3}
+      propertyPath: losePanel
+      value: 
+      objectReference: {fileID: 1690764492}
+    - target: {fileID: 3536943795794193141, guid: 2d49b2563a5e3ac43baa7e7075e06d09, type: 3}
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 1954726797}
@@ -36336,6 +36340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DogBullTerrier
       objectReference: {fileID: 0}
+    - target: {fileID: 3761766065685202571, guid: 62995d2f98d46ac4b8ad39d9169c20bb, type: 3}
+      propertyPath: losePanel
+      value: 
+      objectReference: {fileID: 1690764492}
     - target: {fileID: 3761766065685202571, guid: 62995d2f98d46ac4b8ad39d9169c20bb, type: 3}
       propertyPath: targetPosition
       value: 
@@ -36437,6 +36445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5424643397991742795, guid: a68cee0343da2fa44bd603c4ce295df4, type: 3}
+      propertyPath: losePanel
+      value: 
+      objectReference: {fileID: 1690764492}
     - target: {fileID: 5424643397991742795, guid: a68cee0343da2fa44bd603c4ce295df4, type: 3}
       propertyPath: targetPosition
       value: 
